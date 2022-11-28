@@ -1,0 +1,36 @@
+body {
+  background-color: rgb(32, 18, 73);
+  padding: 30px;
+}
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: white;
+  align-items: center;
+}
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.loginInput {
+  width: 250px;
+  height: 25px;
+}
+.submitButton {
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(51, 51, 51);
+  padding: 8px 10px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 3px #999;
+}
+.submitButton:hover {
+  background-color: rgb(17, 17, 17);
+}
+.submitButton:active {
+  box-shadow: 0 1px #999;
+}
