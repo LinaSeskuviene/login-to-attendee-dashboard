@@ -1,4 +1,5 @@
 import { Component } from "react";
+import './css/attendeeList.css'
 
 const initialFormData = { firstName: "", lastName: "", email: "", age: "" };
 
@@ -38,7 +39,7 @@ class AttendeeList extends Component {
           lastName,
           email,
           age,
-          id: String(this.state.Math.floor(Math.random() * 1000)),
+          id: String(this.state.attendees.length),
         };
     console.log(newAttendee.id)
         this.setState({
@@ -50,9 +51,9 @@ class AttendeeList extends Component {
       render() {
         return (
           <div className="App">
-            <h1>Managemant dashboard</h1>
+            <h1 className="boardTitle">Managemant dashboard</h1>
     
-            <form onSubmit={this.onSubmit}>
+            <form onSubmit={this.onSubmit} className="formContainer">
               <input
                 type="text" placeholder="Name" id="firstName" 
                 value={this.state.formState.firstName} onChange={this.onChange}/>
@@ -65,21 +66,22 @@ class AttendeeList extends Component {
               <input
                 type="number" placeholder="Age" id="age"
                 onChange={this.onChange} value={this.state.formState.age} />
-              <button type="submit" className="addButton">Add Attendee</button>
+              <button type="submit" className="addButton">Add</button>
             </form>
             {this.state.attendees.length ? (
-              <ul>
+              <ul className="listContainer">
                 {this.state.attendees.map((attendee) => (
-                  <li>
-                    {`${attendee.firstName} ${attendee.lastName} is ${attendee.age} years old and ${attendee.firstName}'s the email is ${attendee.email}`}
+                  <li key={attendee.id}><a href="#" className="listItem">
+                    {`${attendee.firstName} ${attendee.lastName} is ${attendee.age} years old and ${attendee.firstName}'s email is ${attendee.email}`}
                     <button onClick={() => this.deleteAttendee(attendee.id)} className="deleteButton">
-                      Delete Attendee
+                      Delete
                     </button>
+                    </a>
                   </li>
                 ))}
               </ul>
             ) : (
-              <h3>
+              <h3 className="noAttendee">
                 There is no attendee in the list
               </h3>
             )}
