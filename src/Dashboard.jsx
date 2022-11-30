@@ -1,6 +1,10 @@
 import React from 'react';
-import { AttendeeList } from './AttendeeList'
+import AttendeeList from './AttendeeList';
 
-export function createDashboard() {
-    return <AttendeeList></AttendeeList>
-}
+export function Dashboard() {
+    return (
+        <>
+        <AttendeeList />
+        </> 
+    )
+};

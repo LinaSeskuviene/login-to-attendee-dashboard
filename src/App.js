@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import { useState } from 'react';
 import { LoginForm } from './LoginForm';
-
+import { Dashboard } from './Dashboard';
 
 function App() {
   const userData = {
@@ -28,7 +28,7 @@ function App() {
     <div className="App">
       {(username.username !== "") ? (
         <div>
-          <p>you in</p>
+          <Dashboard />
         </div>
       ) : (
         <LoginForm Login={Login} error={error} /> 
