@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { nanoid } from 'nanoid'
 import './css/attendeeList.css'
 
 const initialFormData = { firstName: "", lastName: "", email: "", age: "" };
@@ -39,7 +40,7 @@ class AttendeeList extends Component {
           lastName,
           email,
           age,
-          id: String(this.state.attendees.length),
+          id: nanoid(),
         };
     console.log(newAttendee.id)
         this.setState({
@@ -56,27 +57,27 @@ class AttendeeList extends Component {
             <form onSubmit={this.onSubmit} className="formContainer">
               <input
                 type="text" placeholder="Name" id="firstName" 
-                value={this.state.formState.firstName} onChange={this.onChange}/>
+                value={this.state.formState.firstName} onChange={this.onChange} required/>
               <input
                 type="text" placeholder="Last Name" id="lastName"
-                onChange={this.onChange} value={this.state.formState.lastName}/>
+                onChange={this.onChange} value={this.state.formState.lastName} required/>
               <input
                 type="text" placeholder="Email" id="email"
-                onChange={this.onChange} value={this.state.formState.email}/>
+                onChange={this.onChange} value={this.state.formState.email} required/>
               <input
                 type="number" placeholder="Age" id="age"
-                onChange={this.onChange} value={this.state.formState.age} />
+                onChange={this.onChange} value={this.state.formState.age} required/>
               <button type="submit" className="addButton">Add</button>
             </form>
             {this.state.attendees.length ? (
               <ul className="listContainer">
                 {this.state.attendees.map((attendee) => (
-                  <li key={attendee.id}><a href="#" className="listItem">
+                  <li key={attendee.id} className="listItem">
                     {`${attendee.firstName} ${attendee.lastName} is ${attendee.age} years old and ${attendee.firstName}'s email is ${attendee.email}`}
                     <button onClick={() => this.deleteAttendee(attendee.id)} className="deleteButton">
                       Delete
                     </button>
-                    </a>
+                    <button className="editButton">Edit</button>
                   </li>
                 ))}
               </ul>

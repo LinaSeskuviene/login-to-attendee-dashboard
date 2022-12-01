@@ -18,14 +18,17 @@
   background-color: red;
   border-radius: 5px;
   color: white;
-  padding: 5px 8px;
+  padding: 5px 5px;
   cursor: pointer;
   border: none;
   box-shadow: 0 3px #999;
   font-size: 12px;
+  max-height: 30px;
+  width: 50px;
 }
 .deleteButton:hover {
-  background-color: rgb(17, 17, 17);
+  background-color: rgb(168, 21, 21);
+  box-shadow: 0 4px #999;
 }
 .deleteButton:active {
   box-shadow: 0 1px #999;
@@ -42,6 +45,7 @@
 }
 .addButton:hover {
   background-color: rgb(17, 17, 17);
+  box-shadow: 0 4px #999;
 }
 .addButton:active {
   box-shadow: 0 1px #999;
@@ -50,22 +54,49 @@
   color: aliceblue;
 }
 .listContainer {
-  background-color: lightblue;
+  background-color: rgb(32, 18, 73);
   padding: 20px 30px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  list-style-type: none;
 }
 .listItem {
   display: flex;
+  background-color: lightblue;
   flex-direction: row;
   justify-content: space-between;
   gap: 20px;
   text-decoration: none;
   color: black;
+  border: none;
+  width: 400px;
+  border-radius: 3px;
+  padding: 10px;
 }
 .listItem:hover {
-  background-color: rgb(244, 245, 220);
-  box-shadow: 0 3px 3px 0 #999;
+  background-color: rgb(63, 84, 91);
+  box-shadow: 0 0 3px 3px #999;
   border-radius: 3px;
+  color: white;
+  font-weight: 600;
+}
+.editButton {
+  background-color: rgb(68, 42, 243);
+  border-radius: 5px;
+  color: white;
+  padding: 5px 8px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 3px #999;
+  font-size: 12px;
+  max-height: 30px;
+  width: 50px;
+}
+.editButton:hover {
+  background-color: rgb(33, 19, 120);
+  box-shadow: 0 4px #999;
+}
+.editButton:active {
+  box-shadow: 0 1px #999;
 }
