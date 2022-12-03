@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { nanoid } from 'nanoid'
 import './css/attendeeList.css'
+import Modal  from './EditModal'
 
 const initialFormData = { firstName: "", lastName: "", email: "", age: "" };
 
@@ -8,6 +9,7 @@ class AttendeeList extends Component {
     constructor(props) {
         super(props);
     
+        this.state = {openModal : false }
         this.state = {
           attendees: [],
           formState: initialFormData,
@@ -15,7 +17,28 @@ class AttendeeList extends Component {
         this.deleteAttendee = this.deleteAttendee.bind(this);
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.replaceModalItem = this.replaceModalItem.bind(this);
+        this.saveModalData = this.saveModalData.bind(this);
+        this.onClickButton = this.onClickButton.bind(this)
     };
+    replaceModalItem = (attendeeId) =>{
+      this.setState({
+        requiredItem: attendeeId
+      });
+    }
+    saveModalData = (attendeeId) =>{
+      const filteredAttendees = this.state.attendees.filter(
+        (attendee) => attendee.id !== attendeeId
+      );
+      this.setState({ ...this.state, attendees: filteredAttendees });
+    }
+    onClickButton = e =>{
+      this.setState({openModal : true})
+  }
+
+  onCloseModal = ()=>{
+    this.setState({openModal : false})
+}
     deleteAttendee = (attendeeId) => {
         const filteredAttendees = this.state.attendees.filter(
           (attendee) => attendee.id !== attendeeId
@@ -42,14 +65,15 @@ class AttendeeList extends Component {
           age,
           id: nanoid(),
         };
-    console.log(newAttendee.id)
         this.setState({
           ...this.state,
           attendees: [...this.state.attendees, newAttendee],
           formState: initialFormData,
         });
       };
+      
       render() {
+
         return (
           <div className="App">
             <h1 className="boardTitle">Managemant dashboard</h1>
@@ -67,17 +91,23 @@ class AttendeeList extends Component {
               <input
                 type="number" placeholder="Age" id="age"
                 onChange={this.onChange} value={this.state.formState.age} required/>
-              <button type="submit" className="addButton">Add</button>
+            <div className="buttonContainer">
+                <button type="submit" className="addButton">Add</button>
+            </div>
+              
             </form>
             {this.state.attendees.length ? (
               <ul className="listContainer">
                 {this.state.attendees.map((attendee) => (
                   <li key={attendee.id} className="listItem">
                     {`${attendee.firstName} ${attendee.lastName} is ${attendee.age} years old and ${attendee.firstName}'s email is ${attendee.email}`}
-                    <button onClick={() => this.deleteAttendee(attendee.id)} className="deleteButton">
-                      Delete
-                    </button>
-                    <button className="editButton">Edit</button>
+                    <div twoButtonsContainer>
+                      <button onClick={() => this.deleteAttendee(attendee.id)} className="deleteButton">
+                        Delete
+                      </button>
+                      <button className="editButton" data-toggle="modal" data-target="#editModal"
+                      onClick={() => this.onClickButton()}>Edit</button> {""}
+                    </div>
                   </li>
                 ))}
               </ul>

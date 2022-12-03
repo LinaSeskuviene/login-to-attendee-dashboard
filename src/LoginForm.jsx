@@ -11,7 +11,7 @@ export function LoginForm({Login, error}) {
 
     return ( 
         <div className="loginContainer"> 
-            <h1>Welcome to event management system</h1> 
+            <h1 className='welcomeTitle'>Welcome to event management system</h1> 
             {(error !== "") ? (<div>{error}</div>) : ""}
             <form className="loginForm" onSubmit={handleSubmit}>
                 <input className="loginInput" type="text" name="username" 
