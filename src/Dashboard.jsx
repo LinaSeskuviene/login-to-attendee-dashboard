@@ -6,7 +6,7 @@ export function Dashboard() {
     return (
         <>
         <AttendeeList />
-        <div className='getUsersContainer'> 
+        {/* <div className='getUsersContainer'> 
         {
             Users && Users.map( user => {
                 return(
@@ -20,7 +20,7 @@ export function Dashboard() {
                 )
             })
         }
-        </div>
+        </div> */}
         </> 
     )
 };

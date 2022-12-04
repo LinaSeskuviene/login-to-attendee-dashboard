@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { nanoid } from 'nanoid'
 import './css/attendeeList.css'
-import Modal  from './EditModal'
+import Modal from './EditModal'
 
 const initialFormData = { firstName: "", lastName: "", email: "", age: "" };
 
@@ -32,8 +32,9 @@ class AttendeeList extends Component {
       );
       this.setState({ ...this.state, attendees: filteredAttendees });
     }
-    onClickButton = e =>{
+    onClickButton = (at) =>{
       this.setState({openModal : true})
+      console.log(at);
   }
 
   onCloseModal = ()=>{
@@ -73,7 +74,6 @@ class AttendeeList extends Component {
       };
       
       render() {
-
         return (
           <div className="App">
             <h1 className="boardTitle">Managemant dashboard</h1>
@@ -101,12 +101,12 @@ class AttendeeList extends Component {
                 {this.state.attendees.map((attendee) => (
                   <li key={attendee.id} className="listItem">
                     {`${attendee.firstName} ${attendee.lastName} is ${attendee.age} years old and ${attendee.firstName}'s email is ${attendee.email}`}
-                    <div twoButtonsContainer>
+                    <div className="twoButtonsContainer">
                       <button onClick={() => this.deleteAttendee(attendee.id)} className="deleteButton">
                         Delete
                       </button>
                       <button className="editButton" data-toggle="modal" data-target="#editModal"
-                      onClick={() => this.onClickButton()}>Edit</button> {""}
+                      onClick={() => this.onClickButton(attendee)}>Edit</button> {""}
                     </div>
                   </li>
                 ))}
@@ -116,6 +116,8 @@ class AttendeeList extends Component {
                 There is no attendee in the list
               </h3>
             )}
+
+            {this.state.openModal && <Modal />}
           </div>
         );
       }

@@ -4,7 +4,6 @@ import { Component } from "react";
 class Modal extends Component {
     constructor(props) {
         super(props);
-        this.saveHandler = this.saveHandler.bind(this);
         this.state = {
             firstName: '', 
             lastName: '',
@@ -34,10 +33,9 @@ componentReceiveProps(newProps) {
         this.setState({ age: e.target.value})
     }
     saveHandler = () => {
-        const attendeeItem = this.state;
-        this.props.saveModalData(attendeeItem)
+        return(this.setState())
     }
-
+  
     render() {
         return (
             <div className="modal" id="editModal" role="dialog" aria-hidden= 'true' aria-labelledby="label">
@@ -50,16 +48,16 @@ componentReceiveProps(newProps) {
                     </div>
                     <div className="modalBody">
                         <p><span className="modalItem">First Name:</span>
-                        <input value={this.state.firstName} onChange={(e) => this.firstNameHandler(e)}/> 
+                        <input value={this.props.firstName} onChange={(e) => this.firstNameHandler(e)}/> 
                         </p>
                         <p><span className="modalItem">Last Name:</span>
-                        <input value={this.state.lastName} onChange={(e) => this.lastNameHandler(e)}/> 
+                        <input value={this.props.lastName} onChange={(e) => this.lastNameHandler(e)}/> 
                         </p>
                         <p><span className="modalItem">Email:</span>
-                        <input value={this.state.email} onChange={(e) => this.emailHandler(e)}/> 
+                        <input value={this.props.email} onChange={(e) => this.emailHandler(e)}/> 
                         </p>
                         <p><span className="modalItem">Age:</span>
-                        <input value={this.state.age} onChange={(e) => this.ageHandler(e)}/> 
+                        <input value={this.props.age} onChange={(e) => this.ageHandler(e)}/> 
                         </p>
                     </div>
                     <div className="modalFooter">
