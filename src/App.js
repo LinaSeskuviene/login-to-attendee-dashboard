@@ -23,11 +23,15 @@ function App() {
       setError("Incorrect username or password")
     }
     } 
+    const Logout = () =>{
+      setUsername({ username: "", password: ""});
+    }
 
   return (
     <div className="App">
       {(username.username !== "") ? (
         <div>
+          <button onClick={Logout} className="logoutButton">Logout</button>
           <Dashboard />
         </div>
       ) : (
