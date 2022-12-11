@@ -1,7 +1,6 @@
 import { Component } from "react";
 import { nanoid } from 'nanoid'
 import './css/attendeeList.css'
-import Modal from './EditModal'
 
 const initialFormData = { firstName: "", lastName: "", email: "", age: "" };
 
@@ -9,7 +8,6 @@ class AttendeeList extends Component {
     constructor(props) {
         super(props);
     
-        this.state = {openModal : false }
         this.state = {
           attendees: [],
           formState: initialFormData,
@@ -18,28 +16,13 @@ class AttendeeList extends Component {
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.replaceModalItem = this.replaceModalItem.bind(this);
-        this.saveModalData = this.saveModalData.bind(this);
-        this.onClickButton = this.onClickButton.bind(this)
     };
     replaceModalItem = (attendeeId) =>{
       this.setState({
         requiredItem: attendeeId
       });
     }
-    saveModalData = (attendeeId) =>{
-      const filteredAttendees = this.state.attendees.filter(
-        (attendee) => attendee.id !== attendeeId
-      );
-      this.setState({ ...this.state, attendees: filteredAttendees });
-    }
-    onClickButton = (at) =>{
-      this.setState({openModal : true})
-      console.log(at);
-  }
-
-  onCloseModal = ()=>{
-    this.setState({openModal : false})
-}
+ 
     deleteAttendee = (attendeeId) => {
         const filteredAttendees = this.state.attendees.filter(
           (attendee) => attendee.id !== attendeeId
@@ -105,8 +88,6 @@ class AttendeeList extends Component {
                       <button onClick={() => this.deleteAttendee(attendee.id)} className="deleteButton">
                         Delete
                       </button>
-                      <button className="editButton" data-toggle="modal" data-target="#editModal"
-                      onClick={() => this.onClickButton(attendee)}>Edit</button> {""}
                     </div>
                   </li>
                 ))}
@@ -116,8 +97,6 @@ class AttendeeList extends Component {
                 There is no attendee in the list
               </h3>
             )}
-
-            {this.state.openModal && <Modal />}
           </div>
         );
       }
